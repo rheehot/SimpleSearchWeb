@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        function fn_sendMember() {
+            var SignIn = document.SignIn;
+            var userId = SignIn.userId.valueOf();
+            var userPw = SignIn.userPw.valueOf();
+            var userName = SignIn.userName.valueOf();
+            var userEmail = SignIn.userEmail.valueOf();
+            if (userId.length===0 || userId==="") {
+                alert("아이디는 필수입니다.");
+            } else if(userPw.length===0 ||userPw==="") {
+                alert("비밀번호는 필수입니다.");
+            } else if(userName.length===0 ||userName==="") {
+                alert("이름은 필수입니다.");
+            } else if(userEmail.length===0 ||userEmail==="") {
+                alert("이메일은 필수입니다.");
+            } else {
+                SignIn.method="post";
+                SignIn.action="MemberServlet";
+                SignIn.submit();
+            }
+        }
+    </script>
+</head>
+<body>
+<form name="SignIn">
+    <table>
+        <th>회원 가입</th>
+        <tr>
+            <td>아이디</td>
+            <td><input type="text" name="userId"></td>
+        </tr>
+        <tr>
+            <td>비밀번호</td>
+            <td><input type="password" name="userPw"></td>
+        </tr>
+        <tr>
+            <td>이름</td>
+            <td><input type="text" name="userName"></td>
+        </tr>
+        <tr>
+            <td>이메일</td>
+            <td><input type="text" name="userEmail"></td>
+        </tr>
+    </table>
+    <input type="button" value="가입하기" onclick="fn_sendMember()" />
+    <input type="hidden" name="command" value="addMember" />
+</form>
+</body>
+</html>
