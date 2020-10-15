@@ -96,6 +96,7 @@ public class MemberDAO {
                 wine1.setWineName(wineName);
                 wine1.setKind(kind);
                 wine1.setOrigin(origin);
+                wine1.setSweetness(sweetness);
                 wineList.add(wine1);
             }
             rs.close();
