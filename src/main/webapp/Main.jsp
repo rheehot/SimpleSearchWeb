@@ -47,12 +47,18 @@
                 String sweetness = wine1.getSweetness();
         %>
 
-        <tr align="center">
-            <td><%= wineName %></td>
-            <td><%= kind %></td>
-            <td><%= origin %></td>
-            <td><%= sweetness %></td>
-        </tr>
+        <table>
+            <th>와인이름</th>
+            <th>와인종류</th>
+            <th>생산지</th>
+            <th>당도(1 ~ 10)</th>
+            <tr align="center">
+                <td><%= wineName %></td>
+                <td><%= kind %></td>
+                <td><%= origin %></td>
+                <td><%= sweetness %></td>
+            </tr>
+        </table>
 
         <%
             }
