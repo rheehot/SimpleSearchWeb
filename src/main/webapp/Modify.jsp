@@ -10,9 +10,9 @@
     %>
     <form action="MemberServlet" method="post">
         <table>
-            <tr>
-                <td><p>아이디: <%=session.getAttribute("userId")%> </p></td>
-            </tr>
+            <dd>
+                <label>아이디: <%=session.getAttribute("userId")%> </label>
+            </dd>
             <dd>
                 <label for="userPw">기존 비밀번호: </label>
                 <input type="password" name="userPw" id="userPw">
