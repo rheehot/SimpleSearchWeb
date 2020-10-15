@@ -15,12 +15,14 @@
                 <td>비밀번호</td>
                 <td><input type="password" name="userPw"></td>
             </tr>
+        </table>
+        <input type="submit" value="로그인" />
+        <input type="hidden" name="command" value="login" />
+        <table>
             <tr>
                 <td><a href="SignIn.html">회원가입</a></td>
             </tr>
         </table>
-        <input type="submit" value="로그인" />
-        <input type="hidden" name="command" value="login" />
     </form>
 </body>
 </html>
