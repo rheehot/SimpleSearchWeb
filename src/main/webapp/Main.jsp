@@ -82,8 +82,8 @@
                 </td>
                 <td><%= sweetness %>
                 </td>
-                <img src=<%= wineImg %>/>
             </tr>
+            <img src="<%= wineImg%>" />
         </table>
     </div>
     <%
