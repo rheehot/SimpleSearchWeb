@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-    <form action="MemberServlet" method="post">
+    <form action="Servlet.MemberServlet" method="post">
         <table>
             <tr>
                 <td>아이디</td>
@@ -18,11 +18,6 @@
         </table>
         <input type="submit" value="로그인" />
         <input type="hidden" name="command" value="login" />
-        <table>
-            <tr>
-                <td><a href="SignIn.html">회원가입</a></td>
-            </tr>
-        </table>
     </form>
 </body>
 </html>

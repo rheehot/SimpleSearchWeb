@@ -10,4 +10,5 @@ public class Wine {
     private String kind;
     private String origin;
     private String sweetness;
+    private String wineImg;
 }

@@ -2,9 +2,11 @@ package DAO;
 
 import VO.Member;
 import VO.Wine;
+import com.mysql.cj.Session;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +18,6 @@ import java.util.List;
 public class MemberDAO {
     private Connection con;
     private PreparedStatement pstmt;
-    private ResultSet rs;
     private DataSource dataSource;
 
     public DataSource getDataSource() {
@@ -31,42 +32,6 @@ public class MemberDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-
-    public List<Member> listMembers() {
-        List<Member> list = new ArrayList<Member>();
-        try {
-            con = dataSource.getConnection();
-            String query = "SELECT * FROM school.student ";
-
-            pstmt = con.prepareStatement(query);
-            ResultSet rs = pstmt.executeQuery();
-
-            while (rs.next()) {
-                String userId = rs.getString("userId");
-                String userPw = rs.getString("userPw");
-                String userName = rs.getString("userName");
-                String userEmail = rs.getString("userEmail");
-                Date joinDate = rs.getDate("joinDate");
-
-                Member member = new Member();
-                member.setUserId(userId);
-                member.setUserPw(userPw);
-                member.setUserName(userName);
-                member.setUserEmail(userEmail);
-                member.setJoinDate(joinDate);
-                list.add(member);
-            }
-
-            rs.close();
-            pstmt.close();
-            con.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return list;
     }
 
     public List<Member> listWines(Wine wine) {
@@ -91,12 +56,14 @@ public class MemberDAO {
                 String kind = rs.getString("kind");
                 String origin = rs.getString("origin");
                 String sweetness = rs.getString("sweetness");
+                String wineImg = rs.getString("wineImg");
 
                 Wine wine1 = new Wine();
                 wine1.setWineName(wineName);
                 wine1.setKind(kind);
                 wine1.setOrigin(origin);
                 wine1.setSweetness(sweetness);
+                wine1.setWineImg(wineImg);
                 wineList.add(wine1);
             }
             rs.close();

@@ -1,5 +1,8 @@
+package Servlet;
+
 import DAO.MemberDAO;
 import VO.Member;
+import com.mysql.cj.Session;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,15 +14,13 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@WebServlet("/MemberServlet")
+@WebServlet("/Servlet.MemberServlet")
 public class MemberServlet extends HttpServlet {
 
     private Connection con;
     private PreparedStatement pstmt;
-    private ResultSet rs;
     private DataSource dataSource;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -40,6 +41,8 @@ public class MemberServlet extends HttpServlet {
 
     protected void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 
+        HttpSession session;
+
         MemberDAO dao = new MemberDAO();
         dataSource = dao.getDataSource();
 
@@ -59,9 +62,15 @@ public class MemberServlet extends HttpServlet {
 
             dao.addMember(member);
 
+            response.sendRedirect("/Welcome.html");
+
         } else if (command != null && command.equals("delMember")) {
-            String userId = request.getParameter("userId");
+            session = request.getSession();
+            String userId = (String) session.getAttribute("userId");
+
             dao.delMember(userId);
+
+            response.sendRedirect("/DeleteAccountMsg.jsp");
 
         } else if (command != null && command.equals("login")) {
             String userId = request.getParameter("userId");
@@ -72,20 +81,21 @@ public class MemberServlet extends HttpServlet {
             member.setUserPw(userPw);
             boolean result = dao.isExisted(member);
 
-
             if (result) {
-                HttpSession session = request.getSession();
+                session = request.getSession();
 
                 session.setAttribute("isLogon", true);
                 session.setAttribute("userId", userId);
                 session.setAttribute("userPw", userPw);
 
                 response.sendRedirect("/Main.jsp");
+
             } else {
                 response.sendRedirect("/LogIn.jsp");
             }
+
         } else if ((command != null && command.equals("modify"))) {
-            HttpSession session = request.getSession();
+            session = request.getSession();
             String userId = (String) session.getAttribute("userId");
             String userPw = request.getParameter("userPw");
 

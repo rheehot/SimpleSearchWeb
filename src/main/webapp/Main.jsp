@@ -16,10 +16,22 @@
         if (session.getAttribute("userId") != null) {
             String userId = (String) session.getAttribute("userId");
     %>
+
     <div>
         <h1><%=userId%> 님 환영합니다.
-        </h1><a href="/Modify.jsp">회원정보 수정</a>
+            <div>
+                <form action="Modify.jsp">
+                    <input type="submit" value="비밀번호 변경">
+                </form>
+            </div>
+            <div>
+                <form action="Servlet.MemberServlet" method="post">
+                    <input type="submit" value="회원탈퇴">
+                    <input type="hidden" name="command" value="delMember" />
+                </form>
+            </div>
     </div>
+
     <%
     } else {
     %>
@@ -30,8 +42,7 @@
 
     <div>
         <form method="post" action="Main.jsp">
-            와인검색 : <input type="text" name="name"><br/>
-            <input type="submit" value="조회하기">
+            원하는 와인의 당도를 입력해주세요(1 ~ 6) : <input type="text" name="name" /><input type="submit" value="찾기" />
         </form>
     </div>
 
@@ -44,27 +55,34 @@
             MemberDAO dao = new MemberDAO();
             List listWines = dao.listWines(wine);
 
-            for (int i = 0; i < listWines.size(); i++) {
-                Wine wine1 = (Wine) listWines.get(i);
+            for (Object listWine : listWines) {
+                Wine wine1 = (Wine) listWine;
                 String wineName = wine1.getWineName();
                 String kind = wine1.getKind();
                 String origin = wine1.getOrigin();
                 String sweetness = wine1.getSweetness();
+                String wineImg = wine1.getWineImg();
     %>
 
     <div>
-        <table border="1" bordercolor="black" width="50%" align="center" style="word-break: break-all">
+        <table border="1" bordercolor="black" width="60%" align="center" style="word-break: break-all">
             <tr align="center" bgcolor="#f5f5dc">
                 <td class="bold">와인이름</td>
                 <td class=".bold">와인종류</td>
                 <td class=".bold">생산지</td>
-                <td class=".bold">당도(1 ~ 10)</td>
+                <td class=".bold">당도(1 ~ 6)</td>
+                <td class=".bold">사진</td>
             </tr>
             <tr align="center">
-                <td><%= wineName %></td>
-                <td><%= kind %></td>
-                <td><%= origin %></td>
-                <td><%= sweetness %></td>
+                <td><%= wineName %>
+                </td>
+                <td><%= kind %>
+                </td>
+                <td><%= origin %>
+                </td>
+                <td><%= sweetness %>
+                </td>
+                <img src=<%= wineImg %>/>
             </tr>
         </table>
     </div>

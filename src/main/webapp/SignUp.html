@@ -5,11 +5,11 @@
     <title>Title</title>
     <script type="text/javascript">
         function fn_sendMember() {
-            var SignIn = document.SignIn;
-            var userId = SignIn.userId.valueOf();
-            var userPw = SignIn.userPw.valueOf();
-            var userName = SignIn.userName.valueOf();
-            var userEmail = SignIn.userEmail.valueOf();
+            var SignUp = document.SignIn;
+            var userId = SignUp.userId.valueOf();
+            var userPw = SignUp.userPw.valueOf();
+            var userName = SignUp.userName.valueOf();
+            var userEmail = SignUp.userEmail.valueOf();
             if (userId.length===0 || userId==="") {
                 alert("아이디는 필수입니다.");
             } else if(userPw.length===0 ||userPw==="") {
@@ -19,9 +19,9 @@
             } else if(userEmail.length===0 ||userEmail==="") {
                 alert("이메일은 필수입니다.");
             } else {
-                SignIn.method="post";
-                SignIn.action="MemberServlet";
-                SignIn.submit();
+                SignUp.method="post";
+                SignUp.action="MemberServlet";
+                SignUp.submit();
             }
         }
     </script>
