@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"
-         import="java.util.*" import="VO.*"%>
+         import="java.util.*" import="VO.*" import="java.lang.*"%>
 <%@ page import="DAO.MemberDAO" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -25,7 +25,7 @@
                 </form>
             </div>
             <div>
-                <form action="Servlet.MemberServlet" method="post">
+                <form action="MemberServlet" method="post">
                     <input type="submit" value="회원탈퇴">
                     <input type="hidden" name="command" value="delMember" />
                 </form>
@@ -74,16 +74,12 @@
                 <td class=".bold">사진</td>
             </tr>
             <tr align="center">
-                <td><%= wineName %>
-                </td>
-                <td><%= kind %>
-                </td>
-                <td><%= origin %>
-                </td>
-                <td><%= sweetness %>
-                </td>
+                <td><%= wineName %></td>
+                <td><%= kind %></td>
+                <td><%= origin %></td>
+                <td><%= sweetness %></td>
+                <td><img src="<%= wineImg%>"/></td>
             </tr>
-            <img src="<%= wineImg%>" />
         </table>
     </div>
     <%

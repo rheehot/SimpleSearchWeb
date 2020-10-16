@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-    <form action="Servlet.MemberServlet" method="post">
+    <form action="MemberServlet" method="post">
         <table>
             <tr>
                 <td>아이디</td>

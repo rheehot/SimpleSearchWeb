@@ -1,5 +1,3 @@
-package Servlet;
-
 import DAO.MemberDAO;
 import VO.Member;
 import com.mysql.cj.Session;
@@ -16,7 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-@WebServlet("/Servlet.MemberServlet")
+@WebServlet("/MemberServlet")
 public class MemberServlet extends HttpServlet {
 
     private Connection con;
