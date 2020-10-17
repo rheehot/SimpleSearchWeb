@@ -19,6 +19,7 @@ public class MemberDAO {
     private Connection con;
     private PreparedStatement pstmt;
     private DataSource dataSource;
+    private ResultSet rs;
 
     public DataSource getDataSource() {
         return dataSource;
@@ -32,6 +33,48 @@ public class MemberDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Member> memberList(Member member) {
+        List memberList = new ArrayList();
+        String id = member.getUserId();
+
+        try {
+            con = dataSource.getConnection();
+            String query = "SELECT * FROM school.student ";
+
+            if ((id != null && id.length() != 0)) {
+                query += " WHERE userId=?";
+                pstmt = con.prepareStatement(query);
+                pstmt.setString(1, id);
+            } else {
+                pstmt = con.prepareStatement(query);
+            }
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                String userId = rs.getString("userId");
+                String userName = rs.getString("userName");
+                String userEmail = rs.getString("userEmail");
+                Date joinDate = rs.getDate("joinDate");
+
+                Member member1 = new Member();
+                member1.setUserId(userId);
+                member1.setUserName(userName);
+                member1.setUserEmail(userEmail);
+                member1.setJoinDate(joinDate);
+                memberList.add(member1);
+            }
+
+            rs.close();
+            pstmt.close();
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return memberList;
     }
 
     public List<Member> listWines(Wine wine) {
@@ -121,8 +164,7 @@ public class MemberDAO {
 
         try {
             con = dataSource.getConnection();
-            String query1 = "SELECT IF(1, 'true', 'false') as result from school.student";
-            query1 += " where userId=? and userPw=?";
+            String query1 = "SELECT IF(1, 'true', 'false') as result from school.student where userId=? and userPw=?";
 
             pstmt = con.prepareStatement(query1);
 

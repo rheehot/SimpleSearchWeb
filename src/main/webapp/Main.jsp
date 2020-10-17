@@ -23,8 +23,6 @@
                 <form action="Modify.jsp">
                     <input type="submit" value="비밀번호 변경">
                 </form>
-            </div>
-            <div>
                 <form action="MemberServlet" method="post">
                     <input type="submit" value="회원탈퇴">
                     <input type="hidden" name="command" value="delMember" />
@@ -34,10 +32,8 @@
 
     <%
     } else {
-    %>
-    <%
-            response.sendRedirect("/LogIn.jsp");
-        }
+        response.sendRedirect("/LogIn.jsp");
+    }
     %>
 
     <div>

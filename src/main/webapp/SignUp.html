@@ -5,29 +5,24 @@
     <title>Title</title>
     <script type="text/javascript">
         function fn_sendMember() {
-            var SignUp = document.SignIn;
-            var userId = SignUp.userId.valueOf();
-            var userPw = SignUp.userPw.valueOf();
-            var userName = SignUp.userName.valueOf();
-            var userEmail = SignUp.userEmail.valueOf();
-            if (userId.length===0 || userId==="") {
-                alert("아이디는 필수입니다.");
-            } else if(userPw.length===0 ||userPw==="") {
-                alert("비밀번호는 필수입니다.");
-            } else if(userName.length===0 ||userName==="") {
-                alert("이름은 필수입니다.");
-            } else if(userEmail.length===0 ||userEmail==="") {
-                alert("이메일은 필수입니다.");
+            var SignUp = document.SignUp;
+            var userId = SignUp.userId.value;
+            var userPw = SignUp.userPw.value;
+            var userName = SignUp.userName.value;
+            var userEmail = SignUp.userEmail.value;
+            if ((userId.length===0 || userId==="") || (userPw.length===0 ||userPw==="")
+            || (userName.length===0 || userName==="") || (userEmail.length===0 || userEmail==="")) {
+                alert("모든 정보를 입력하셔야 합니다.");
             } else {
-                SignUp.method="post";
-                SignUp.action="MemberServlet";
+                SignUp.method = "post";
+                SignUp.action = "MemberServlet";
                 SignUp.submit();
             }
         }
     </script>
 </head>
 <body>
-<form name="SignIn">
+<form name="SignUp" method="post" action="SignUp.html" encType="UTF-8">
     <table>
         <th>회원 가입</th>
         <tr>
@@ -47,7 +42,7 @@
             <td><input type="text" name="userEmail"></td>
         </tr>
     </table>
-    <input type="button" value="가입하기" onclick="fn_sendMember()" />
+    <input type="button" onclick="fn_sendMember()" value="가입하기" />
     <input type="hidden" name="command" value="addMember" />
 </form>
 </body>

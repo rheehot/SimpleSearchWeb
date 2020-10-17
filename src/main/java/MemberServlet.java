@@ -12,7 +12,9 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import static java.lang.System.out;
 
 @WebServlet("/MemberServlet")
 public class MemberServlet extends HttpServlet {
@@ -20,6 +22,7 @@ public class MemberServlet extends HttpServlet {
     private Connection con;
     private PreparedStatement pstmt;
     private DataSource dataSource;
+
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -38,6 +41,7 @@ public class MemberServlet extends HttpServlet {
     }
 
     protected void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+
 
         HttpSession session;
 
@@ -59,10 +63,11 @@ public class MemberServlet extends HttpServlet {
             member.setUserEmail(userEmail);
 
             dao.addMember(member);
-
             response.sendRedirect("/Welcome.html");
 
+
         } else if (command != null && command.equals("delMember")) {
+
             session = request.getSession();
             String userId = (String) session.getAttribute("userId");
 
@@ -86,8 +91,14 @@ public class MemberServlet extends HttpServlet {
                 session.setAttribute("userId", userId);
                 session.setAttribute("userPw", userPw);
 
-                response.sendRedirect("/Main.jsp");
-
+                // Admin
+                if ((userId != null && userId.length() != 0)) {
+                    if (userId.equals("admin")) {
+                        response.sendRedirect("/Admin.jsp");
+                    } else {
+                        response.sendRedirect("/Main.jsp");
+                    }
+                }
             } else {
                 response.sendRedirect("/LogIn.jsp");
             }
@@ -99,15 +110,15 @@ public class MemberServlet extends HttpServlet {
 
             String query = null;
 
+            if (request.getParameter("modifyPw") != null) {
+                query = "UPDATE school.student SET userPw=? WHERE userId=? AND userPw=?";
+            }
+
+            try {
+                con = dataSource.getConnection();
+                pstmt = con.prepareStatement(query);
+
                 if (request.getParameter("modifyPw") != null) {
-                    query = "UPDATE school.student SET userPw=? WHERE userId=? AND userPw=?";
-                }
-
-                try {
-                    con = dataSource.getConnection();
-                    pstmt = con.prepareStatement(query);
-
-                    if (request.getParameter("modifyPw") != null) {
                     pstmt.setString(1, request.getParameter("modifyPw"));
                     pstmt.setString(2, userId);
                     pstmt.setString(3, userPw);

@@ -7,7 +7,7 @@
 <%
     if (session.getAttribute("userId") != null) {
 %>
-<form action="Servlet.MemberServlet" method="post">
+<form action="MemberServlet" method="post">
     <table>
         <dd>
             <label>아이디: <%=session.getAttribute("userId")%> </label>
