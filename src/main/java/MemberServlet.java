@@ -1,7 +1,6 @@
 import DAO.MemberDAO;
 import VO.Member;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +10,6 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 @WebServlet("/MemberServlet")
 public class MemberServlet extends HttpServlet {
@@ -21,23 +19,15 @@ public class MemberServlet extends HttpServlet {
     private DataSource dataSource;
 
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            doHandle(request, response);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        doHandle(request, response);
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            doHandle(request, response);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        doHandle(request, response);
     }
 
-    protected void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+    protected void doHandle(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         HttpSession session;
 
@@ -83,6 +73,7 @@ public class MemberServlet extends HttpServlet {
                 member.setUserPw(userPw);
                 boolean result = dao.isExisted(member);
 
+                // 로그인 정보 일치 시 세션 저장
                 if (result) {
                     session = request.getSession();
 

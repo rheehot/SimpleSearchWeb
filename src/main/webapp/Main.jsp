@@ -21,12 +21,18 @@
     <div>
         <h1><%=userId%> 님 환영합니다.
             <div>
+                <%-- 본인 계정 비밀번호 변경 버튼 --%>
                 <form action="Modify.jsp">
                     <input type="submit" value="비밀번호 변경">
                 </form>
+                <%-- 회원탈퇴 버튼 --%>
                 <form action="MemberServlet" method="post">
                     <input type="submit" value="회원탈퇴">
                     <input type="hidden" name="command" value="delMember" />
+                </form>
+                <%-- 로그아웃 버튼 --%>
+                <form action="LogOut.jsp" method="post">
+                    <input type="submit" value="로그아웃">
                 </form>
             </div>
     </div>
@@ -40,7 +46,7 @@
 
     <div>
         <form method="post" action="Main.jsp">
-            원하는 와인의 당도를 입력해주세요(1 ~ 6) : <input type="text" name="name" /><input type="submit" value="찾기" />
+            원하는 와인의 당도를 입력해주세요(1 ~ 6) : <label><input type="text" name="name" /><input type="submit" value="찾기" /></label>
         </form>
     </div>
 

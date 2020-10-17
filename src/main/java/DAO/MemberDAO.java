@@ -17,7 +17,6 @@ public class MemberDAO {
     private Connection con;
     private PreparedStatement pstmt;
     private DataSource dataSource;
-    private ResultSet rs;
     public DataSource getDataSource() {
         return dataSource;
     }
@@ -34,7 +33,7 @@ public class MemberDAO {
 
     // 특정 멤버 혹은 전체 멤버 보여주는 메서드
     public List<Member> memberList(Member member) {
-        List memberList = new ArrayList();
+        List<Member> memberList = new ArrayList<>();
         String id = member.getUserId();
 
         try {
@@ -77,8 +76,8 @@ public class MemberDAO {
 
 
     // 특정 혹은 전체 와인 리스트 보여주는 메서드
-    public List<Member> listWines(Wine wine) {
-        List wineList = new ArrayList();
+    public List<Wine> listWines(Wine wine) {
+        List<Wine> wineList = new ArrayList<Wine>();
         String name = wine.getSweetness();
         try {
             con = dataSource.getConnection();
@@ -161,7 +160,7 @@ public class MemberDAO {
     }
 
 
-    // 해당 아이디에 대해 세션이 있는지 확인
+    // 로그인 입력 정보와 데이터베이스가 일치하는지 확인
     public boolean isExisted(Member member) {
 
         boolean result = false;

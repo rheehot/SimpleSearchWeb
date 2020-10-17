@@ -9,11 +9,11 @@
         <table>
             <tr>
                 <td>아이디</td>
-                <td><input type="text" name="userId"></td>
+                <td><label><input type="text" name="userId"></label></td>
             </tr>
             <tr>
                 <td>비밀번호</td>
-                <td><input type="password" name="userPw"></td>
+                <td><label><input type="password" name="userPw"></label></td>
             </tr>
         </table>
         <input type="submit" value="로그인" />
