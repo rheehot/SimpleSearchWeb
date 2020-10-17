@@ -21,7 +21,8 @@
     <h1><%= userId %> 계정으로 로그인 하셨습니다.
         <div>
             <form method="post" action="Admin.jsp">
-                회원 아이디를 입력해주세요. 전체 회원을 찾을 시 그냥 "찾기" 버튼 클릭해주세요. <label><input type="text" name="userId" /><input type="submit" value="찾기" /></label>
+                회원 아이디를 입력해주세요. 전체 회원을 찾을 시 그냥 "찾기" 버튼 클릭해주세요.
+                <label><input type="text" name="userId" /><input type="submit" value="찾기" /></label>
             </form>
             <%-- 로그아웃 버튼 --%>
             <form action="LogOut.jsp" method="post">

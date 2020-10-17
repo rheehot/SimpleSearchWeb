@@ -4,7 +4,7 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>메인 페이지</title>
     <style>
         .bold {
             font-weight: bold;
@@ -40,7 +40,7 @@
     <%-- 로그인 세션 없을 시 LogIn.jsp 이동 --%>
     <%
     } else {
-        response.sendRedirect("/LogIn.jsp");
+        response.sendRedirect("LogIn.jsp");
     }
     %>
 

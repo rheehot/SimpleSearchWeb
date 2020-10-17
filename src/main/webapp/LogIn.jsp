@@ -2,7 +2,7 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>로그인 양식</title>
 </head>
 <body>
     <form action="MemberServlet" method="post">

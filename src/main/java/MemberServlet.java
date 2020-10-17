@@ -50,7 +50,7 @@ public class MemberServlet extends HttpServlet {
             member.setUserEmail(userEmail);
 
             dao.addMember(member);
-            response.sendRedirect("/Welcome.html");
+            response.sendRedirect("Welcome.html");
 
             // 멤버 회원탈퇴
             } else if (command != null && command.equals("delMember")) {
@@ -61,7 +61,7 @@ public class MemberServlet extends HttpServlet {
                 dao.delMember(userId);
 
                 // 탈퇴 버튼 클릭 시 마지막 인사와 welcome 페이지로 돌아가는 버튼
-                response.sendRedirect("/DeleteAccountMsg.jsp");
+                response.sendRedirect("DeleteAccountMsg.html");
 
               // 로그인
             } else if (command != null && command.equals("login")) {
@@ -87,13 +87,13 @@ public class MemberServlet extends HttpServlet {
                      */
                     if ((userId != null && userId.length() != 0)) {
                         if (userId.equals("admin")) {
-                            response.sendRedirect("/Admin.jsp");
+                            response.sendRedirect("Admin.jsp");
                         } else {
-                            response.sendRedirect("/Main.jsp");
+                            response.sendRedirect("Main.jsp");
                         }
                     }
                 } else { // 세션이 존재하지 않을 경우 LogIn.jsp
-                    response.sendRedirect("/LogIn.jsp");
+                    response.sendRedirect("LogIn.jsp");
                 }
 
             // 멤버 자신의 비밀번호 수정
