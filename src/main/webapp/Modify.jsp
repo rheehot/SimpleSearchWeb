@@ -4,12 +4,15 @@
     <title>Title</title>
 </head>
 <body>
+
+<%-- 세션 유지 --%>
 <%
     if (session.getAttribute("userId") != null) {
 %>
 <form action="MemberServlet" method="post">
     <table>
         <dd>
+            <%-- 비밀번호 수정 시 id 값은 그대로 들고 --%>
             <label>아이디: <%=session.getAttribute("userId")%> </label>
         </dd>
         <dd>

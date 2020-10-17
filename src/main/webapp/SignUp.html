@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script type="text/javascript">
+        /*
+         1. 회원가입 정보 중 미입력 정보 있을 시 alert
+         2. 중복된 id 입력 시 콘솔창 에러
+         3. 미입력, 중복 없을 시 MemberServlet으로 넘어감
+         */
         function fn_sendMember() {
             var SignUp = document.SignUp;
             var userId = SignUp.userId.value;
@@ -27,7 +32,7 @@
         <th>회원 가입</th>
         <tr>
             <td>아이디</td>
-            <td><input type="text" name="userId"></td>
+            <td><input type="text" name="userId">
         </tr>
         <tr>
             <td>비밀번호</td>

@@ -2,11 +2,9 @@ package DAO;
 
 import VO.Member;
 import VO.Wine;
-import com.mysql.cj.Session;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
-import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,7 +18,6 @@ public class MemberDAO {
     private PreparedStatement pstmt;
     private DataSource dataSource;
     private ResultSet rs;
-
     public DataSource getDataSource() {
         return dataSource;
     }
@@ -35,6 +32,7 @@ public class MemberDAO {
         }
     }
 
+    // 특정 멤버 혹은 전체 멤버 보여주는 메서드
     public List<Member> memberList(Member member) {
         List memberList = new ArrayList();
         String id = member.getUserId();
@@ -77,6 +75,8 @@ public class MemberDAO {
         return memberList;
     }
 
+
+    // 특정 혹은 전체 와인 리스트 보여주는 메서드
     public List<Member> listWines(Wine wine) {
         List wineList = new ArrayList();
         String name = wine.getSweetness();
@@ -118,6 +118,8 @@ public class MemberDAO {
         return wineList;
     }
 
+
+    // 회원가입
     public void addMember(Member member) {
         try {
             con = dataSource.getConnection();
@@ -141,6 +143,8 @@ public class MemberDAO {
         }
     }
 
+
+    // 회원탈퇴
     public void delMember(String userId) {
         try {
             con = dataSource.getConnection();
@@ -156,6 +160,8 @@ public class MemberDAO {
         }
     }
 
+
+    // 해당 아이디에 대해 세션이 있는지 확인
     public boolean isExisted(Member member) {
 
         boolean result = false;

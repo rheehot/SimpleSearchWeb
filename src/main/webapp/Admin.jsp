@@ -8,12 +8,15 @@
     <title>Title</title>
 </head>
 <body>
+
+    <%-- 세션유지 --%>
     <%
         if (session.getAttribute("userId") != null) {
             String userId = (String) session.getAttribute("userId");
-
     %>
 
+    <%-- 1. 특정 회원 아이디 입력 시 결과값
+        2. 특정 회원 아이디 입력 X 시 전체 회원 보여줌 --%>
     <h1>Admin 님 환영합니다.
         <div>
             <form method="post" action="Admin.jsp">
@@ -21,25 +24,26 @@
             </form>
         </div>
 
-            <%
-            }
-        %>
+    <%
+        }
+    %>
 
-            <%
-        String id = request.getParameter("userId");
-        Member member = new Member();
-        member.setUserId(id);
+    <%-- 특정 혹은 전체 회원 목록 --%>
+    <%
+       String id = request.getParameter("userId");
+       Member member = new Member();
+       member.setUserId(id);
 
-        if (id != null) {
-            MemberDAO dao = new MemberDAO();
-            List memberList = dao.memberList(member);
+       if (id != null) {
+           MemberDAO dao = new MemberDAO();
+           List memberList = dao.memberList(member);
 
-            for (Object memberLists : memberList) {
-                Member member1 = (Member) memberLists;
-                String userId = member1.getUserId();
-                String userName = member1.getUserName();
-                String userEmail = member1.getUserEmail();
-                Date joinDate = member1.getJoinDate();
+           for (Object memberLists : memberList) {
+               Member member1 = (Member) memberLists;
+               String userId = member1.getUserId();
+               String userName = member1.getUserName();
+               String userEmail = member1.getUserEmail();
+               Date joinDate = member1.getJoinDate();
     %>
 
         <div>
@@ -59,10 +63,10 @@
             </table>
         </div>
 
-        <%
-            }
+    <%
         }
-        %>
+    }
+    %>
 
 
 </body>

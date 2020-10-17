@@ -12,6 +12,7 @@
     </style>
 </head>
 <body>
+    <%-- 세션 유지 --%>
     <%
         if (session.getAttribute("userId") != null) {
             String userId = (String) session.getAttribute("userId");
@@ -30,6 +31,7 @@
             </div>
     </div>
 
+    <%-- 로그인 세션 없을 시 LogIn.jsp 이동 --%>
     <%
     } else {
         response.sendRedirect("/LogIn.jsp");
@@ -42,6 +44,8 @@
         </form>
     </div>
 
+    <%-- 1. 원하는 당도 입력 시 해당하는 와인 보여줌(1 ~ 6)
+        2. 당도 미입력 버튼 클릭 시 전체 와인 보여줌--%>
     <%
         String name = request.getParameter("name");
         Wine wine = new Wine();
@@ -74,6 +78,9 @@
                 <td><%= kind %></td>
                 <td><%= origin %></td>
                 <td><%= sweetness %></td>
+                <%-- 1. 데이터베이스에 와인 경로 입력
+                2. 경로를 VO에 저장 후 가져옴
+                3. 와인에 해당하는 사진이 나옴 --%>
                 <td><img src="<%= wineImg%>"/></td>
             </tr>
         </table>
